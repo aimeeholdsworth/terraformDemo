@@ -32,6 +32,20 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
+resource "aws_route_table" "private-route-table" {
+  vpc_id = aws_vpc.production-vpc.id
+
+    route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = var.nat_gate_id
+  }
+
+  tags = {
+    Name = "Prod"
+  }
+  
+}
+
 resource "aws_security_group" "allow_web" {
   name        = "allow_web"
   description = "Allow web inbound traffic"
@@ -70,5 +84,33 @@ resource "aws_security_group" "allow_web" {
 
   tags = {
     Name = "allow_web_traffic"
+  }
+}
+
+
+
+resource "aws_security_group" "mysql" {
+  name        = "allow_sql"
+  description = "Allow sql"
+  vpc_id      = aws_vpc.production.id
+
+  ingress {
+    description = "HTTPS"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "mySql_port"
   }
 }

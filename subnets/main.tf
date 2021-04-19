@@ -10,19 +10,53 @@ resource "aws_subnet" "subnet-1" {
   }
 }
 
-resource "aws_subnet" "subnet-2" {
+resource "aws_subnet" "subnet-2" { #private subnet
   vpc_id            = var.vpc_id
   cidr_block        = "10.0.2.0/24"
-  availability_zone = "eu-west-2b"
+  availability_zone = "eu-west-2b" #spread subnets over multiple availability zones
   tags = {
     Name = "private-subnet"
   }
 }
 
-resource "aws_route_table_association" "prod_route" {
+resource "aws_subnet" "subnet-3" { #private subnet
+  vpc_id            = var.vpc_id
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = "eu-west-2c" #spread subnets over multiple availability zones
+  tags = {
+    Name = "private-subnet"
+  }
+}
+
+resource "aws_db_subnet_group" "private-group" { #group the private subnets for a db group
+  name       = "private-group"
+  subnet_ids = [aws_subnet.subnet-2.id, aws_subnet.subnet-3.id]
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
+
+
+#route tables for each subnet
+resource "aws_route_table_association" "a" {
   subnet_id      = aws_subnet.subnet-1.id
   route_table_id = var.route_id
 }
+
+resource "aws_route_table_association" "b" {
+  subnet_id      = aws_subnet.subnet-2.id
+  route_table_id = var.route_id_private
+}
+
+resource "aws_route_table_association" "c" {
+  subnet_id      = aws_subnet.subnet-3.id
+  route_table_id = var.route_id_private
+}
+
+
+
+
 
 resource "aws_network_interface" "web-server-nic" {
   subnet_id       = aws_subnet.subnet-1.id
@@ -51,7 +85,7 @@ resource "aws_nat_gateway" "gw" {
   
 }
 
-resource "aws_route_table" "NAT_gateway_RT" {
+resource "aws_route_table" "prod_route" {
   depends_on = [
     aws_nat_gateway.gw
   ]
@@ -60,6 +94,19 @@ resource "aws_route_table" "NAT_gateway_RT" {
   route {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.gw.id
+  }  
+  tags = {
+    Name = "Route table for Gateway"
+  }
+}
+
+resource "aws_route_table" "private-route-table" {
+ 
+
+  vpc_id = var.vpc_id
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = var.nat_gate_id
   }  
   tags = {
     Name = "Route table for Gateway"

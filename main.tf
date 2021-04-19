@@ -6,12 +6,15 @@ provider "aws"{
 
 module "vpc" {
     source = "./vpc"
+
+    nat_gate_id = module.subnets.nat_gate_id
 }
 
 module "subnets" {
     source = "./subnets"
     vpc_id = module.vpc.vpc_id
     route_id = module.vpc.route_id
+    route_id_private = module.vpc.route_id_private
     sec_group_id    = module.vpc.sec_group_id
     security_id = module.vpc.security_id
     internet_gate = module.vpc.internet_gate
@@ -27,11 +30,7 @@ module "ec2" {
     instance_type   = "t2.medium"
     av_zone         = "eu-west-2a"
     key_name        = "firstkey"
-    user_data       = <<-EOF
-                        #!/bin/bash
-                        sudo apt update -y
-                        sudo apt install apache2 -y
-                        sudo systemctl start apache2
-                        sudo bash -c 'echo your very first web server > /var/www/html/index.html'
-                        EOF
+    subnet_group_name = module.subnets.subnet_group_name
+    sec_group_id_sql  = module.vpc.sec_group_id_sql
+    
 }
