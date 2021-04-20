@@ -1,4 +1,6 @@
 variable "net_id" {}
+variable "net_id_test" {}
+variable "net_id_jenkins" {}
 variable "ami_id" {}
 variable "instance_type" {}
 variable "av_zone" {}

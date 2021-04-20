@@ -18,13 +18,13 @@ resource "aws_instance" "prod-instance" {
 
 resource "aws_instance" "jenkins-instance" {
   ami               = var.ami_id 
-  instance_type     = var.instance_type 
+  instance_type     = "t2.medium" 
   availability_zone = var.av_zone 
   key_name          = var.key_name
 
   network_interface {
     device_index         = 0
-    network_interface_id = var.net_id
+    network_interface_id = var.net_id_jenkins
   }
 
  
@@ -42,7 +42,7 @@ resource "aws_instance" "test-instance" {
 
   network_interface {
     device_index         = 0
-    network_interface_id = var.net_id
+    network_interface_id = var.net_id_test
   }
 
  

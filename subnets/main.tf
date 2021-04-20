@@ -62,7 +62,20 @@ resource "aws_network_interface" "web-server-nic" {
   subnet_id       = aws_subnet.subnet-1.id
   private_ips     = ["10.0.1.50", "10.0.1.51"]
   security_groups = [var.sec_group_id]
+  
+}
 
+resource "aws_network_interface" "test-nic" {
+  subnet_id       = aws_subnet.subnet-1.id
+  private_ips     = ["10.0.1.53"]
+  security_groups = [var.sec_group_id]
+  
+}
+
+resource "aws_network_interface" "jenkins-nic" {
+  subnet_id       = aws_subnet.subnet-1.id
+  private_ips     = ["10.0.1.54"]
+  security_groups = [var.sec_group_id]
   
 }
 

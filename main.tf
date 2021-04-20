@@ -26,8 +26,10 @@ module "ec2" {
     source          = "./ec2"
 
     net_id          = module.subnets.net_id
+    net_id_test          = module.subnets.net_id_test
+    net_id_jenkins          = module.subnets.net_id_jenkins
     ami_id          = "ami-096cb92bb3580c759"
-    instance_type   = "t2.medium"
+    instance_type   = "t2.small"
     av_zone         = "eu-west-2a"
     key_name        = "firstkey"
     subnet_group_name = module.subnets.subnet_group_name
