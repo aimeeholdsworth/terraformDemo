@@ -1,4 +1,4 @@
-resource "aws_instance" "web-server-instance" {
+resource "aws_instance" "prod-instance" {
   ami               = var.ami_id 
   instance_type     = var.instance_type 
   availability_zone = var.av_zone 
@@ -12,7 +12,42 @@ resource "aws_instance" "web-server-instance" {
   #user_data = var.user_data
 
   tags = {
-    Name = "web-server"
+    Name = "prod"
+  }
+}
+
+resource "aws_instance" "jenkins-instance" {
+  ami               = var.ami_id 
+  instance_type     = var.instance_type 
+  availability_zone = var.av_zone 
+  key_name          = var.key_name
+
+  network_interface {
+    device_index         = 0
+    network_interface_id = var.net_id
+  }
+
+ 
+
+  tags = {
+    Name = "jenkins"
+  }
+}
+
+resource "aws_instance" "test-instance" {
+  ami               = var.ami_id 
+  instance_type     = var.instance_type 
+  availability_zone = var.av_zone 
+  key_name          = var.key_name
+
+  network_interface {
+    device_index         = 0
+    network_interface_id = var.net_id
+  }
+
+ 
+  tags = {
+    Name = "test"
   }
 }
 
