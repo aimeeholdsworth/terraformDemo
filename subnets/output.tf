@@ -3,7 +3,7 @@ output "net_id"{
 }
 
 output "nat_gate_id" {
-  value = aws_nat_gatewat.gw.id
+  value = aws_nat_gateway.gw.id
 }
 
 output "subnet_group_name" {

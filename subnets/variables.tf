@@ -21,3 +21,8 @@ variable "net_private_ips" {
 variable "sec_group_id" {
     
 }
+
+variable "route_id_private" {
+    
+}
+

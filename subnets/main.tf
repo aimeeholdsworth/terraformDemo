@@ -85,30 +85,30 @@ resource "aws_nat_gateway" "gw" {
   
 }
 
-resource "aws_route_table" "prod_route" {
-  depends_on = [
-    aws_nat_gateway.gw
-  ]
+# resource "aws_route_table" "prod_route" {
+#   depends_on = [
+#     aws_nat_gateway.gw
+#   ]
 
-  vpc_id = var.vpc_id
-  route {
-    cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.gw.id
-  }  
-  tags = {
-    Name = "Route table for Gateway"
-  }
-}
+#   vpc_id = var.vpc_id
+#   route {
+#     cidr_block = "0.0.0.0/0"
+#     nat_gateway_id = aws_nat_gateway.gw.id
+#   }  
+#   tags = {
+#     Name = "Route table for Gateway"
+#   }
+# }
 
-resource "aws_route_table" "private-route-table" {
+# resource "aws_route_table" "private-route-table" {
  
 
-  vpc_id = var.vpc_id
-  route {
-    cidr_block = "0.0.0.0/0"
-    nat_gateway_id = var.nat_gate_id
-  }  
-  tags = {
-    Name = "Route table for Gateway"
-  }
-}
+#   vpc_id = var.vpc_id
+#   route {
+#     cidr_block = "0.0.0.0/0"
+#     nat_gateway_id = var.nat_gate_id
+#   }  
+#   tags = {
+#     Name = "Route table for Gateway"
+#   }
+# }

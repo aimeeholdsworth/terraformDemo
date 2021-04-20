@@ -18,13 +18,13 @@ resource "aws_instance" "web-server-instance" {
 
 
 resource "aws_db_instance" "sql-db" {
-  identifier = "database"
+  identifier = "terrasqldb"
   allocated_storage    = 10
   
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t3.micro"
-  name                 = "database"
+  name                 = "terrasqldb"
   username             = "admin"
   password             = "password"
   parameter_group_name = "default.mysql5.7"

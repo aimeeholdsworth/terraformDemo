@@ -33,7 +33,7 @@ resource "aws_internet_gateway" "gw" {
 }
 
 resource "aws_route_table" "private-route-table" {
-  vpc_id = aws_vpc.production-vpc.id
+  vpc_id = aws_vpc.production.id
 
     route {
     cidr_block     = "0.0.0.0/0"
