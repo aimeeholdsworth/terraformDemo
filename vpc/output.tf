@@ -25,9 +25,7 @@ output "sec_group_id_sql" {
   
 }
 
-output "vpc_id" {
-    value = aws_vpc.production.id
-}
+
 
 output "route_id_prod" {
     value = aws_route_table.prod_route.id
