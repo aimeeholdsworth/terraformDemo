@@ -1,0 +1,32 @@
+- hosts: all
+  become: true 
+  tasks:
+  - name: Install docker dependencies 
+    apt:
+      pkg: 
+      - apt-transport-https 
+      - ca-certificates 
+      - curl 
+      - gnupg 
+      - lsb-release 
+      update_cache: true 
+  - name: Add docker gpg key 
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg 
+      state: present 
+  - name: Add docker APT Repo 
+    apt_repository: 
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename|lower}} stable
+      state: present 
+  - name: Install docker engine 
+    apt: 
+      pkg: 
+      - docker-ce 
+      - docker-ce-cli 
+      - containerd.io 
+      update_cache: true 
+  - name: Add ubuntu user to docker group 
+    user: 
+      name: ubuntu 
+      groups: docker  
+      append: yes 

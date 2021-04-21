@@ -1,0 +1,10 @@
+all: 
+  hosts: 
+    10.0.1.54: #jenkins private ip
+    10.0.1.50: #production private ip
+    10.0.1.51: #production 2nd private ip
+    10.0.1.53: #test private ip
+  vars: 
+    ansible_ssh_private_key_file: "~/.ssh/firstkey"
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    ansible_user: ubuntu
