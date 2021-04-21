@@ -6,7 +6,7 @@ resource "aws_instance" "prod-instance" {
 
   network_interface {
     device_index         = 0
-    network_interface_id = var.net_id
+    network_interface_id = var.net_id_prod
   }
 
   #user_data = var.user_data
@@ -48,6 +48,27 @@ resource "aws_instance" "test-instance" {
  
   tags = {
     Name = "test"
+  }
+}
+
+
+resource "aws_instance" "bastion-instance" {
+  ami               = var.ami_id 
+  instance_type     = var.instance_type 
+  availability_zone = var.av_zone 
+  key_name          = var.key_name
+  subnet_id = var.subnet_id
+  vpc_security_group_ids = [var.sec_group_id]
+
+  # network_interface {
+  #   device_index         = 0
+  #   network_interface_id = var.net_id_bastion
+  # }
+  
+
+ 
+  tags = {
+    Name = "bastion"
   }
 }
 

@@ -25,14 +25,17 @@ module "subnets" {
 module "ec2" {
     source          = "./ec2"
 
-    net_id          = module.subnets.net_id
+    net_id_prod          = module.subnets.net_id_prod
     net_id_test          = module.subnets.net_id_test
     net_id_jenkins          = module.subnets.net_id_jenkins
+    net_id_bastion          = module.subnets.net_id_bastion
     ami_id          = "ami-096cb92bb3580c759"
     instance_type   = "t2.small"
     av_zone         = "eu-west-2a"
     key_name        = "firstkey"
     subnet_group_name = module.subnets.subnet_group_name
     sec_group_id_sql  = module.vpc.sec_group_id_sql
+    subnet_id = module.subnets.subnet_id
+    sec_group_id = module.vpc.sec_group_id
     
 }

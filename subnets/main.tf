@@ -79,6 +79,13 @@ resource "aws_network_interface" "jenkins-nic" {
   
 }
 
+resource "aws_network_interface" "bastion-nic" {
+  subnet_id       = aws_subnet.subnet-1.id
+  private_ips     = ["10.0.1.55"]
+  security_groups = [var.sec_group_id]
+  
+}
+
 resource "aws_eip" "one" {
   vpc                       = true
   #network_interface         = aws_network_interface.web-server-nic.id
