@@ -1,0 +1,16 @@
+- hosts: test
+  become: true
+  roles:
+  - docker
+  - python
+- hosts: production
+  become: true
+  roles:
+  - docker
+  - python
+- hosts: jenkins
+  become: true
+  roles:
+  - docker
+  - jenkins
+  - python
