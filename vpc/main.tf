@@ -68,6 +68,14 @@ resource "aws_security_group" "allow_web" {
   }
 
   ingress {
+    description = "HTTP traffic"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
     description = "SSH"
     from_port   = 22
     to_port     = 22

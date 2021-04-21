@@ -21,6 +21,7 @@ resource "aws_instance" "jenkins-instance" {
   instance_type     = "t2.medium" 
   availability_zone = var.av_zone 
   key_name          = var.key_name
+  
 
   network_interface {
     device_index         = 0
