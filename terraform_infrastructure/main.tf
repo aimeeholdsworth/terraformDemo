@@ -37,6 +37,7 @@ module "ec2" {
     sec_group_id_sql  = module.vpc.sec_group_id_sql
     subnet_id = module.subnets.subnet_id
     sec_group_id = module.vpc.sec_group_id
+    MYSQL_ROOT_PASSWORD= var.MYSQL_ROOT_PASSWORD
     user_data =   <<-EOF
                           #!/bin/bash
                           sudo apt update -y

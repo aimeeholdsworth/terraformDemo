@@ -9,3 +9,8 @@ variable "secret_key" {
     sensitive = true
   
 }
+
+variable "MYSQL_ROOT_PASSWORD"{
+    type = string
+    sensitive = true
+}
