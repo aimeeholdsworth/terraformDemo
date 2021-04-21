@@ -13,3 +13,4 @@ variable "subnet_id"{}
 variable "sec_group_id" {
   
 }
+variable "MYSQL_ROOT_PASSWORD"{}

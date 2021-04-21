@@ -3,6 +3,14 @@ resource "aws_instance" "prod-instance" {
   instance_type     = var.instance_type 
   availability_zone = var.av_zone 
   key_name          = var.key_name
+  user_data = <<-EOF
+                 #!/bin/bash
+                 echo "export MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.bashrc
+                 echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.profile
+                 echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>/etc/environment
+
+
+                 EOF
 
   network_interface {
     device_index         = 0
@@ -21,6 +29,14 @@ resource "aws_instance" "jenkins-instance" {
   instance_type     = "t2.medium" 
   availability_zone = var.av_zone 
   key_name          = var.key_name
+  user_data = <<-EOF
+                 #!/bin/bash
+                 echo "export MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.bashrc
+                 echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.profile
+                 echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>/etc/environment
+
+
+                 EOF
   
 
   network_interface {
@@ -40,6 +56,15 @@ resource "aws_instance" "test-instance" {
   instance_type     = var.instance_type 
   availability_zone = var.av_zone 
   key_name          = var.key_name
+  user_data = <<-EOF
+                 #!/bin/bash
+                 echo "export MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.bashrc
+                 echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.profile
+                 echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>/etc/environment
+
+
+                 EOF
+  
 
   network_interface {
     device_index         = 0
