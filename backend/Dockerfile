@@ -6,7 +6,7 @@ WORKDIR /backend
 # install pip dependencies from requirements file
  RUN pip install -r requirements.txt
 
-ENV MYSQL_ROOT_PASSWORD=password MYSQL_DATABASE=flask-db
+ENV MYSQL_ROOT_PASSWORD=password MYSQL_DB=flask-db
 # Expose correct port
 EXPOSE 5000
 # Create an entrypoint
