@@ -5,6 +5,13 @@ pipeline {
         DOCKER_PASSWORD = credentials("DOCKER_PASSWORD")
     }
     stages {
+
+        
+        stage("Install Dependencies"){
+            steps {
+                sh "bash install-dependencies.sh"
+            }
+        }
         
         stage("Build"){
             steps {
