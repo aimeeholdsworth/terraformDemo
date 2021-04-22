@@ -109,7 +109,7 @@ resource "aws_db_instance" "sql-db" {
   instance_class       = "db.t3.micro"
   name                 = "terrasqldb"
   username             = "admin"
-  password             = "password"
+  password             = var.MYSQL_ROOT_PASSWORD
   parameter_group_name = "default.mysql5.7"
   db_subnet_group_name = var.subnet_group_name
   vpc_security_group_ids = [ var.sec_group_id_sql ]
