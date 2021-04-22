@@ -7,26 +7,23 @@ pipeline {
     stages {
 
         
-        stage("Install Dependencies"){
+        stage("Test"){
             steps {
-                sh "bash install-dependencies.sh"
+                docker compose up
+                pytest
             }
         }
         
-        stage("Build"){
-            steps {
-                sh "docker-compose build --parallel"
-            }
-        }
-        stage("Push"){
-            steps {
-                sh "docker-compose push"
-            }
-        }
         stage("Deploy"){
             steps {
-                sh "docker-compose up -d"
+                
+                ssh 35.176.101.41 -oStrictHostKeyChecking=no << EOF
+                git clone 'https://github.com/aimeeholdsworth/terraformDemo.git'
+                cd ./module_setup
+                docker compose up
+                EOF
             }
         }
+        
     }
 }
