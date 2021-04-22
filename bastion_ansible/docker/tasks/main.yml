@@ -34,11 +34,7 @@
       name: jenkins
       comment: docker-jenk
       group: docker
-  - name: Run and enable docker
-    service:
-      name: docker
-      state: started
-      enabled: true
+
 
   
   
