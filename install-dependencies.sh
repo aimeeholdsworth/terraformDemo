@@ -23,3 +23,5 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 #authenitcate docker user with jenkins
 echo $DOCKER_PASSWORD | docker login --username aimeeh97 --password-stdin 
+
+sudo systemctl restart docker
