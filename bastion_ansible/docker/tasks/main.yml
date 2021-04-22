@@ -31,4 +31,8 @@
     user:
       name: jenkins
       comment: docker-jenk
-      group: docker 
+      group: docker
+  - name: compose
+    pip:
+      name: docker-compose
+
