@@ -26,6 +26,8 @@ pipeline {
                     cd ..
 		            sudo docker-compose up -d --build
 		            sudo curl localhost:80
+
+                    '''
             }
         }
         stage("Push"){
