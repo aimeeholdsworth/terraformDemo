@@ -18,10 +18,10 @@ pipeline {
             steps {
                 
                 ssh 35.176.101.41 -oStrictHostKeyChecking=no << EOF
-                git clone 'https://github.com/aimeeholdsworth/terraformDemo.git'
-                cd ./module_setup
-                docker compose up
-                EOF
+                                                                git clone 'https://github.com/aimeeholdsworth/terraformDemo.git'
+                                                                cd ./module_setup
+                                                                docker compose up
+                                                                EOF
             }
         }
         
