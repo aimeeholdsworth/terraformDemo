@@ -9,18 +9,22 @@ pipeline {
         
         stage("Test"){
             steps {
-                docker compose up
-                pytest
+                sh '''
+                        docker compose up
+                        pytest
+                '''
             }
         }
         
         stage("Deploy"){
-            steps {                
-                ssh '35.176.101.41' -oStrictHostKeyChecking=no << EOF
-                                                                git clone 'https://github.com/aimeeholdsworth/terraformDemo.git'
-                                                                cd ./module_setup
-                                                                docker compose up
-                                                                EOF
+            steps {
+                sh '''              
+                        ssh '35.176.101.41' -oStrictHostKeyChecking=no << EOF
+                                                                        git clone 'https://github.com/aimeeholdsworth/terraformDemo.git'
+                                                                        cd ./module_setup
+                                                                        docker compose up
+                                                                        EOF
+                '''                                                    
             }
         }
         
