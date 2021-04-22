@@ -49,4 +49,7 @@
   - name: Move docker-compose to /usr/local/bin/docker-compose
     command: mv ~/docker-compose /usr/local/bin/docker-compose
     when: docker_compose.stat.exists
+  - name:
+    shell: 
+      export PATH=/usr/local/bin:$PATH
 
