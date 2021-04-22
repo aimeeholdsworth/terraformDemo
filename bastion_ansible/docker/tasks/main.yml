@@ -5,7 +5,9 @@
       - ca-certificates 
       - curl 
       - gnupg 
-      - lsb-release 
+      - lsb-release
+      - software-properties-common
+      - gnupg-agent 
       update_cache: true 
   - name: Add docker gpg key 
     apt_key:
@@ -46,9 +48,9 @@
       dest: ~/docker-compose
       mode: '+x'
   - name: Check docker-compose exists
-      stat: path=~/docker-compose
-      register: docker_compose
+    stat: path=~/docker-compose
+    register: docker_compose
   - name: Move docker-compose to /usr/local/bin/docker-compose
-      command: mv ~/docker-compose /usr/local/bin/docker-compose
-      when: docker_compose.stat.exists
+    command: mv ~/docker-compose /usr/local/bin/docker-compose
+    when: docker_compose.stat.exists
 
