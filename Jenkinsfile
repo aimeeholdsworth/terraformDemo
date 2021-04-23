@@ -10,6 +10,7 @@ pipeline {
         stage("Test"){
             steps {
                 sh '''
+                        docker ps --all
                         docker-compose up -d
                         pytest
                 '''
