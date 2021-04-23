@@ -10,7 +10,7 @@ pipeline {
     stages {
 
         
-        stage("Test FRont"){
+        stage("Test Front"){
             steps {
                 sh '''
                         docker ps -q | xargs docker stop
