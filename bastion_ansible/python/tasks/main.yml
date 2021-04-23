@@ -5,6 +5,7 @@
     - python3-virtualenv
     - python3-dev
     - virtualenv
+    - pytest
     state: present
     update_cache: true
 
