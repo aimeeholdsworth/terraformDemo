@@ -19,9 +19,11 @@
 - name: pytest
   pip:
     name: pytest
-- name: install flask with pip
+- name: install nginx
+  yum: name=nginx state=installed
+
+- name: install pip
+  yum: name=python-pip state=installed
+
+- name: install flask
   pip: name=flask
-# - name: start flask
-#   shell: "flask run"
-#     environment:
-#       FLASK_APP: /var/www/main.py
