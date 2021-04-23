@@ -9,6 +9,14 @@ resource "aws_instance" "prod-instance" {
                  echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.profile
                  echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>/etc/environment
 
+                 echo "export DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.bashrc
+                 echo "DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.profile
+                 echo "DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>/etc/environment
+                 source ~/.bashrc
+                 source ~/.profile
+
+                 
+
 
                  EOF
 
@@ -34,6 +42,24 @@ resource "aws_instance" "jenkins-instance" {
                  echo "export MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.bashrc
                  echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.profile
                  echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>/etc/environment
+
+                 echo "export DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.bashrc
+                 echo "DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.profile
+                 echo "DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>/etc/environment
+                 source ~/.bashrc
+                 source ~/.profile
+
+                 echo "export TEST_DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.bashrc
+                 echo "TEST_DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.profile
+                 echo "TEST_DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>/etc/environment
+                 source ~/.bashrc
+                 source ~/.profile
+
+                 echo "export SECRET_KEY=${var.SECRET_KEY}">>~/.bashrc
+                 echo "SECRET_KEY=${var.SECRET_KEY}">>~/.profile
+                 echo "SECRET_KEY=${var.SECRET_KEY}">>/etc/environment
+                 source ~/.bashrc
+                 source ~/.profile
 
 
                  EOF
@@ -62,6 +88,18 @@ resource "aws_instance" "test-instance" {
                  echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>~/.profile
                  echo "MYSQL_ROOT_PASSWORD=${var.MYSQL_ROOT_PASSWORD}">>/etc/environment
 
+                 
+                 echo "export DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.bashrc
+                 echo "DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.profile
+                 echo "DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>/etc/environment
+                 source ~/.bashrc
+                 source ~/.profile
+
+                 echo "export TEST_DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.bashrc
+                 echo "TEST_DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>~/.profile
+                 echo "TEST_DATABASE_URI="mysql+pymysql://admin:${var.MYSQL_ROOT_PASSWORD}@${var.NAT_GATEWAY}:3306/orders"">>/etc/environment
+                 source ~/.bashrc
+                 source ~/.profile
 
                  EOF
   

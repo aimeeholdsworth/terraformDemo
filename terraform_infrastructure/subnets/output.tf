@@ -31,3 +31,7 @@ output "subnet_id" {
     value = aws_subnet.subnet-1.id
   
 }
+
+output "nat_gate_ip"{
+    value = aws_eip.one.public_ip
+}

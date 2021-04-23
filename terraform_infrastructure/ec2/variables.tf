@@ -14,3 +14,10 @@ variable "sec_group_id" {
   
 }
 variable "MYSQL_ROOT_PASSWORD"{}
+variable "NAT_GATEWAY" {
+  
+}
+
+variable "SECRET_KEY" {
+  
+}

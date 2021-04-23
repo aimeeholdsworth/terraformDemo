@@ -38,13 +38,28 @@ module "ec2" {
     subnet_id = module.subnets.subnet_id
     sec_group_id = module.vpc.sec_group_id
     MYSQL_ROOT_PASSWORD= var.MYSQL_ROOT_PASSWORD
+    NAT_GATEWAY = module.subnets.nat_gate_ip
+    SECRET_KEY = var.SECRET_KEY
     user_data =   <<-EOF
                           #!/bin/bash
                           sudo apt update -y
                           sudo apt install software-properties-common
                           sudo apt-add-repository --yes --update ppa:ansible/ansible
                           sudo apt install ansible -y
-                          sudo apt install python3-flask
+                          sudo apt install python3-flask -y
+                          mysql --host=${var.NAT_GATEWAY}:3306 --user=admin --password=password testdb
+
+                          CREATE DATABASE testdb;
+                          CREATE DATABASE users;
+                          USE users;
+                          
+                          DROP TABLE IF EXISTS `users`;
+                          
+                          CREATE TABLE `users` (
+                            `userName` varchar(30) NOT NULL
+                          );
+                          
+                          INSERT INTO `users` VALUES ('Bob'),('Jay'),('Matt'),('Ferg'),('Mo');
 
                           
                      EOF
