@@ -39,7 +39,6 @@ pipeline {
                 sh '''    
                                  
                         ssh -T -i '~/.ssh/firstkey' ubuntu@10.0.1.50 -oStrictHostKeyChecking=no << EOF
-                                                                        git clone 'https://github.com/aimeeholdsworth/terraformDemo.git'
                                                                         
                                                                         docker-compose up -d
                                                                         EOF
