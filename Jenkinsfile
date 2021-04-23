@@ -10,12 +10,25 @@ pipeline {
     stages {
 
         
-        stage("Test"){
+        stage("Test FRont"){
             steps {
                 sh '''
                         docker ps --all
                         docker-compose up -d
                         cd ./frontend
+                        
+                        pytest
+                '''
+            }
+        }
+
+         stage("Test Back"){
+            steps {
+                sh '''
+                        docker ps --all
+                        docker-compose up -d
+                        cd ./backend
+                        
                         pytest
                 '''
             }
