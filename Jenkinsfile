@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh '''
                         docker rm $(docker ps -a -q)
-                        docker rm
+                        
                         docker-compose up -d
                         cd ./frontend
                         
