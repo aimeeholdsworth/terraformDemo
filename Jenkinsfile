@@ -12,6 +12,7 @@ pipeline {
                 sh '''
                         docker ps --all
                         docker-compose up -d
+                        cd ./frontend
                         pytest
                 '''
             }
