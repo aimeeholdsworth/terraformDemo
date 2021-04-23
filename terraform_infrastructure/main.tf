@@ -49,7 +49,7 @@ module "ec2" {
                           sudo apt install python3-flask -y
                         
                           #!/bin/bash
-                          mysql --host=${var.NAT_GATEWAY}:3306 --user=admin --password=password testdb <<EOF
+                          mysql --host=${module.subnets.nat_gate_ip}:3306 --user=admin --password=password testdb <<EOF
                         
                           CREATE DATABASE testdb;
                           CREATE DATABASE users;
