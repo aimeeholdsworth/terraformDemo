@@ -13,7 +13,7 @@ pipeline {
         stage("Test Front"){
             steps {
                 sh '''
-                        docker stop
+                        docker stop -a
                         docker rm
                         docker-compose up -d
                         cd ./frontend
