@@ -19,3 +19,9 @@
 - name: pytest
   pip:
     name: pytest
+- name: install flask with pip
+  pip: name=flask
+# - name: start flask
+#   shell: "flask run"
+#     environment:
+#       FLASK_APP: /var/www/main.py
