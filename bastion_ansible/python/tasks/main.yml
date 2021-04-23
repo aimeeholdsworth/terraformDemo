@@ -16,3 +16,6 @@
     - curl
     state: present
     update_cache: true
+- name: pytest
+  pip:
+    name: pytest
